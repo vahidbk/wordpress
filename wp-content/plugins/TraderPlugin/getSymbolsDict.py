@@ -12,6 +12,9 @@ try:
 except Exception as err:
     print("Error:"+str(err))
 
+def persianWordCorection(string):
+    return string.replace('ک','ك').replace('ي','ی')
+
 try:
     TSETMC.saveAllSymbolListFromTSETMCToDB()   
     symbolList=TSETMC.loadAllSymbolListFromTSETMCToDB()
@@ -24,7 +27,12 @@ try:
         name = symbol+" ,"+symbolCompany
         data={"IDTSE":symbolIDTSE, "IDTrader":symbolIDTrader, "symbolCompany":symbolCompany, "ShortName":symbol}
         data=symbolIDTrader
-        symbolsDict[data] = name
+        symbolsDict[data] = persianWordCorection(name)
+    #  
+    # to  
+    # 
+    # 
+     
     print (json.dumps(symbolsDict))
 except Exception as err:
     print("Error:"+str(err))

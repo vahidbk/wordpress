@@ -17,17 +17,21 @@ function my_admin_pages($pages) {
     return $pages;
   }
 
-function my_enqueue_files() {
-    wp_enqueue_script( 'my-great-script', get_template_directory_uri() . '/wordpress/wp-content/plugins/customPlugin/js/jquery-3.5.1.min.js', array( 'jquery' ), '1.0.0', true );
+function enqueue_select2_jquery() {
+  wp_register_style( 'select2css', '//cdnjs.cloudflare.com/ajax/libs/select2/3.4.8/select2.css', false, '1.0', 'all' );
+  wp_register_script( 'select2', '//cdnjs.cloudflare.com/ajax/libs/select2/3.4.8/select2.js', array( 'jquery' ), '1.0', true );
+  wp_enqueue_style( 'select2css' );
+  wp_enqueue_script( 'select2' );
+  wp_enqueue_script( 'jquery' );
 
-    wp_enqueue_style( 'chosen_styles', 'https://harvesthq.github.io/chosen/chosen.css', false );
-    wp_enqueue_script( 'jquery' );
-    wp_enqueue_script( 'chosen_js', 'https://harvesthq.github.io/chosen/chosen.jquery.js', array('jquery'), null, true );
-    wp_enqueue_style( 'select2_styles', 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css', false );
-    wp_enqueue_script( 'jquery' );
-    wp_enqueue_script( 'select2_js', 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js', array('jquery'), null, true );
-  
+  wp_register_style( 'persianDatepicker', '/wp-content/plugins/TraderPlugin/css/persianDatepicker-default.css', false, '1.0', 'all' );
+  wp_register_script( 'persianDatepicker', '/wp-content/plugins/TraderPlugin/js/persianDatepicker.min.js', array( 'jquery' ), '1.0', true );
+  wp_enqueue_style( 'persianDatepicker' );
+  wp_enqueue_script( 'persianDatepicker' );
+
 }
-// add_action( 'wp_enqueue_scripts', 'my_enqueue_files' );
-add_action( 'admin_enqueue_scripts', 'my_enqueue_files' );
+add_action( 'admin_enqueue_scripts', 'enqueue_select2_jquery' );
+
 ?>
+
+
